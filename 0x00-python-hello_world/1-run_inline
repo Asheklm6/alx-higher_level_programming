@@ -1,2 +1,0 @@
-#!/bin/bash
-echo $PYCODE | /usr/bin/python3
