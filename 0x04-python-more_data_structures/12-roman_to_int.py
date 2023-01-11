@@ -1,15 +1,24 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    if roman_string and type(roman_string) is str:
-        dictn = dict(I=1, V=5, X=10, L=50, C=100, D=500, M=1000)
-        value = 0
-        for a, x in zip(roman_string, roman_string[1:]):
-            if dictn[a] < dictn[x]:
-                value -= dictn[a]
-            else:
-                value += dictn[a]
-       value += dictn[roman_string[-1]
-       return value
-   else:
-       return 0
-        
+    if not roman_string or type(roman_string) != str:
+        return 0
+
+    rom_num = {"M": 1000, "D": 500, "C": 100, "L": 50, "X": 10, "V": 5, "I": 1}
+    num = 0
+
+    i = 0
+    while i < len(roman_string):
+        currnt = roman_string[i]
+        if i == len(roman_string) - 1:
+            num += rom_num[currnt]
+            break
+        nxt = roman_string[i + 1]
+
+        if rom_num[currnt] >= rom_num[nxt]:
+            num += rom_num[currnt]
+        else:
+            num += rom_num[nxt] - rom_num[currnt]
+            i += 1
+        i += 1
+
+    return num
